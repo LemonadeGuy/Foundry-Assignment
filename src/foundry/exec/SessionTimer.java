@@ -30,8 +30,16 @@ public class SessionTimer {
 
 	public int calculateNumberOfTracks() {
 		int totalTime = getTotalTime(); //There's no inputs 
+		int total =  getTotalTime() / Constants.DAILY_LITMIT; //minimum bound 
 		if (totalTime == 0) {
 			return totalTime;
+		} else if (total > 0) {
+			int additionalTime = total * 60;
+			if (totalTime % Constants.DAILY_LITMIT > additionalTime) {
+				return 0; //total time is greater than the possible allocated time including additional hour between 4 and 5, thus invalid session
+			} else {
+				return total;
+			}
 		}
 
 		// spec says that each session will have a morning and an afternoon so do we
@@ -42,7 +50,7 @@ public class SessionTimer {
 		 * && totalTime % Constants.DAILY_LITMIT > 0) { return total + 1; //integer
 		 * division gives you one if > 360 but also }
 		 */
-		return getTotalTime() / Constants.DAILY_LITMIT;
+		return total;
 	}
 	/**
 	 * Generates the Block Items for the morning session enforcing the Must 
@@ -95,7 +103,7 @@ public class SessionTimer {
 		// get the number of tracks
 
 		while (count < tracks) {
-			System.out.println("Starting with " + workingSessions.size());
+		//	System.out.println("Starting with " + workingSessions.size());
 			for (int i = 0; i < workingSessions.size(); i++) { // iterate and
 				sessions = new ArrayList<SessionItem>();
 				sessions.add(workingSessions.get(i));
