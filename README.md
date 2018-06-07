@@ -1,6 +1,8 @@
-# Foundry-Stuff
+# Foundry-Assignment
 
-Usage java Main <path to file with list of conference talks> 
+Please note that this code has been written in a windows environment using Java 1.8 and might not behave as expected if using unix paths
+
+Usage java Main \path\to\file\with\talk\items 
 
 This is my attempt at the conference solving problem. There are many improvements that can be implemented 
 1)Moving the start, end, morning and afternoon requirements into config files. This will allow you to very easily adjust the conference parameters i.e. if I wanted to start at 7am instead of 9am and maybe wanted a earlier end, say 3pm. 
